@@ -3,26 +3,45 @@ import QtQuick.Controls 1.2
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Hello test commit")
+    title: qsTr("Folder Watcher")
 
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("&Open")
-                onTriggered: console.log("Open action triggered");
-            }
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
-            }
+//    Button{
+//        anchors.centerIn: parent
+//    }
+
+    ListView {
+
+        width: 100; height: 100
+
+        model: folderListModel
+        delegate: Rectangle {
+            height: 25
+            width: 100
+            //color: model.modelData.name
+            Text { text: name }
         }
     }
 
-    Label {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
-    }
+    width: 640
+    height: 480
+
+
+////    menuBar: MenuBar {
+////        Menu {
+////            title: qsTr("File")
+////            MenuItem {
+////                text: qsTr("&Open")
+////                onTriggered: console.log("Open action triggered");
+////            }
+////            MenuItem {
+////                text: qsTr("Exit")
+////                onTriggered: Qt.quit();
+////            }
+////        }
+////    }
+
+//    Label {
+//        text: qsTr("Hello World")
+//        anchors.centerIn: parent
+//    }
 }
