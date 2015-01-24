@@ -6,6 +6,14 @@
 #include <QQmlListProperty>
 #include "fileitem.h"
 
+/**
+ * @brief Класс, обеспечивающий работу с файловой системой для QML.
+ * Содержит два свойства: путь к папке folderPath и список элементов @FileItem fileList,
+ * предоставляющий информацию о содержимом указанной папки.
+ * При изменении folderPath значения fileList обновляются.
+ * В случае, если folderPath содержит пустое значение, fileList сожержит список файлов и папок директории запуска приложения
+ * В случае, если папки folderPath не существует, fileList является пустым списком.
+ */
 class FileListProvider : public QObject
 {
     Q_OBJECT

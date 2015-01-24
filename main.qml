@@ -24,25 +24,27 @@ ApplicationWindow {
                 }
             }
         }
-
         ScrollView {
             id: listViewContainer
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.minimumHeight: 100
+
             ListView {
+                spacing: 3
                 model: fileListProvider.fileList
                 delegate: Rectangle {
-                    border.color: "red"
+                    border.color: "black"
                     height: 25
                     width: listViewContainer.width
-                    Text { text: name }
+                    Text {
+                        text: isFolder? "[DIR] " + name : "[FILE] " + name //+ fileListProvider.fileList.length
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: 3
+                    }
                 }
             }
         }
-
-
-
     }
     width: 640
     height: 480

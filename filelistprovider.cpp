@@ -4,10 +4,8 @@ void FileListProvider::refreshFileList(QString path)
 {
     m_fileList.clear();
 
-
     if(dir.cd(path))
     {
-
         QFileInfoList list = dir.entryInfoList();
         foreach(QFileInfo fInfo, list)
         {
