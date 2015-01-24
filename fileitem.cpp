@@ -12,6 +12,16 @@ FileItem::~FileItem()
     m_isFolder = false;
 }
 
+QString FileItem::getName() const
+{
+    return m_name;
+}
+
+bool FileItem::getIsFolder() const
+{
+    return m_isFolder;
+}
+
 void FileItem::setName(QString arg)
 {
     if (m_name == arg)

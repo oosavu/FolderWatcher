@@ -6,26 +6,18 @@
 class FileItem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(bool isFolder READ getIsFolder WRITE setIsFolder NOTIFY isFolderChanged)
+    Q_PROPERTY(QString name READ getName NOTIFY nameChanged)
+    Q_PROPERTY(bool isFolder READ getIsFolder NOTIFY isFolderChanged)
 
     QString m_name;
     bool m_isFolder;
 
 public:
-    explicit FileItem(QObject *parent = 0);
-    explicit FileItem(QString name, bool isFolder, QObject *parent = 0);
+    explicit FileItem(QString name = "", bool isFolder = false, QObject *parent = 0);
     ~FileItem();
 
-    QString getName() const
-    {
-        return m_name;
-    }
-
-    bool getIsFolder() const
-    {
-        return m_isFolder;
-    }
+    QString getName() const;
+    bool getIsFolder() const;
 
 signals:
 
