@@ -5,7 +5,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Hello test commit")
 
     menuBar: MenuBar {
         Menu {
