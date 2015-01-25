@@ -31,6 +31,8 @@ ApplicationWindow {
             Layout.minimumHeight: 100
 
             ListView {
+                visible: fileListProvider.folderPathExists == true &&
+                         fileListProvider.fileList.length != 0
                 spacing: 3
                 model: fileListProvider.fileList
                 delegate: Rectangle {
@@ -38,12 +40,20 @@ ApplicationWindow {
                     height: 25
                     width: listViewContainer.width
                     Text {
-                        text: isFolder? "[DIR] " + name : "[FILE] " + name //+ fileListProvider.fileList.length
+                        text: isFolder? "[DIR] " + name : "[FILE] " + name
                         anchors.verticalCenter: parent.verticalCenter
                         x: 3
                     }
                 }
             }
+        }
+        Text {
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            visible: fileListProvider.folderPathExists == false || fileListProvider.fileList.length == 0
+            text: fileListProvider.folderPathExists == false? "Folder " + fileListProvider.folderPath + " not exists":
+                                                              "Folder " + fileListProvider.folderPath + " is empty"
+            anchors.fill: parent
         }
     }
     width: 640

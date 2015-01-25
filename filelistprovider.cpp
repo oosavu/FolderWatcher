@@ -1,19 +1,5 @@
 #include "filelistprovider.h"
 
-void FileListProvider::refreshFileList(QString path)
-{
-    m_fileList.clear();
-
-    if(dir.cd(path))
-    {
-        QFileInfoList list = dir.entryInfoList();
-        foreach(QFileInfo fInfo, list)
-        {
-            m_fileList.append(new FileItem(fInfo.fileName(),fInfo.isDir()));
-        }
-    }
-    emit fileListChanged();
-}
 
 FileListProvider::FileListProvider(QObject *parent) : QObject(parent)
 {
@@ -41,8 +27,23 @@ void FileListProvider::setFolderPath(QString arg)
     if (m_folderPath == arg)
         return;
 
-    m_folderPath = arg;
-    refreshFileList(arg);
-    emit folderPathChanged(arg);
+    m_folderPath = arg;    
+    m_fileList.clear();
+    if(dir.cd(m_folderPath))
+    {
+        QFileInfoList list = dir.entryInfoList();
+        foreach(QFileInfo fInfo, list)
+        {
+            m_fileList.append(new FileItem(fInfo.fileName(),fInfo.isDir()));
+        }
+        m_folderPathExists = true;
+    }
+    else
+    {
+        m_folderPathExists = false;
+    }
+    emit fileListChanged();
+    emit folderPathExistsChanged();
+    emit folderPathChanged();
 }
 
